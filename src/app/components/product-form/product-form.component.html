@@ -1,0 +1,54 @@
+<div>
+    <div class="full">
+        <div class="text-center ">
+            <header class="header bg-info p-4">
+                <div class="fw-bold fs-4 text-start" routerLink="/product-list">
+                    Products
+                    <button class="bg-info pull-right">
+                        <i class="fa fa-solid fa-home"></i>
+                    </button>
+                </div>
+            </header>
+            <div class="cycle shadow-lg">
+                @if (isEdit) {
+                <h4 class="h4 fw-bolder">Edit Product Detail</h4>
+                }
+                @else {
+                <h4 class="h4 fw-bolder">Create Product</h4>
+                }
+                <form class="" [formGroup]="productForm" (ngSubmit)="save()">
+
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Name</span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="name"
+                            aria-describedby="addon-wrapping" formControlName="name">
+                    </div>
+
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Price</span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="price"
+                            aria-describedby="addon-wrapping" formControlName="price">
+                    </div>
+
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Stock</span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="stock"
+                            aria-describedby="addon-wrapping" formControlName="stock">
+                    </div>
+
+                    <div>
+                        @if (isEdit) {
+                        <button class="btn btn-success" [disabled]="!productForm.valid">
+                            Update
+                        </button>
+                        }@else {
+                        <button class="btn btn-success" [disabled]="!productForm.valid">
+                            Add
+                        </button>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

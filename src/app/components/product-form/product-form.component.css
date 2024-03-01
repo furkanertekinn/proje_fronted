@@ -1,0 +1,22 @@
+.btn {
+    margin: 10px;
+    margin-bottom: 100px;
+    width: 150px;
+}
+
+.h4{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.input-group {
+    
+    width: 450px;
+    margin-left: 700px;
+    margin-bottom: 30px;
+}
+
+.cycle{
+    margin: 30px;
+    border:2px solid gray;
+}
