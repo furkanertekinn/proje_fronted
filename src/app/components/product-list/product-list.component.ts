@@ -28,8 +28,11 @@ export class ProductListComponent {
     'total',
     'action'
   ];
+
+  isAuthenticated: boolean = false;
   ngOnInit() {
     this.getProductFromServer();
+    this.isAuthenticated = this.checkIsAuthenticated();
   }
 
   getProductFromServer() {
@@ -51,5 +54,11 @@ export class ProductListComponent {
         this.getProductFromServer();
         this.toaster.success("Deleted successfully.");
       });
+  }
+
+  checkIsAuthenticated(){
+    if(localStorage.getItem("token") != null)
+      return true;
+    return false;
   }
 }

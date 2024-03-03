@@ -25,6 +25,7 @@ export class ProductFormComponent {
   })
   productId!: number;
   isEdit = false;
+  
   ngOnInit() {
     this.productId = this.route.snapshot.params['id'];
     if (this.productId) {
@@ -40,7 +41,6 @@ export class ProductFormComponent {
     }
   }
   save() {
-    console.log(this.productForm.value);
     const product: IProduct = {
       productName: this.productForm.value.name!,
       productUnitPrice: this.productForm.value.price!,

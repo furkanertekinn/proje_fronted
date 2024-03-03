@@ -1,29 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { HttpService } from '../../http.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent {
+  formBuilder = inject(FormBuilder);
+  httpService = inject(HttpService);
+  router = inject(Router);
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
-  loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private auth: HttpService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
-  }
+  userForm = this.formBuilder.group({
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  })
 
   hideShowPass() {
     this.isText = !this.isText;
@@ -32,24 +29,20 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Send the obj database.
-      this.auth.login(this.loginForm.value)
+    if (this.userForm.valid) {
+      this.httpService.login(this.userForm.value)
         .subscribe({
           next: (res) => {
-            alert(res + "next");
-            this.loginForm.reset();
+            this.userForm.reset();
             this.router.navigate(['product-list']);
+            if (res == true) {
+              localStorage.setItem('token', res)
+            }
           },
           error: (err) => {
-            alert(err?.error + "error");
+            alert(err?.error + " error");
           }
         })
     }
-    // else {
-    //   ValideForm.validateAllFormFiles(this.loginForm);
-    //   alert("Your form is invalid!");
-    // }
   }
 }

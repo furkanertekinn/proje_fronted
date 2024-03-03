@@ -33,11 +33,11 @@ export class HttpService {
   }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}register`, userObj);
+    return this.http.post<any>(`${this.baseUrl}/register`, userObj);
   }
 
   login(loginObj: any) {
-    return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj);
+    return this.http.post<any>(`${this.baseUrl}/authenticate`, loginObj);
   }
 
 }

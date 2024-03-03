@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../../http.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   type: string = 'password';
   isText: boolean = false;
+  formBuilder = inject(FormBuilder);
+  httpService = inject(HttpService);
+  router = inject(Router);
   eyeIcon: string = "fa-eye-slash";
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder, private auth: HttpService, private router: Router) { }
 
   ngOnInit(): void {
-    this.signUpForm = this.fb.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+    this.signUpForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
@@ -32,24 +34,19 @@ export class SignupComponent {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
-  onSingup() {
+  onSignup() {
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-      this.auth.signUp(this.signUpForm.value)
+      this.httpService.signUp(this.signUpForm.value)
         .subscribe({
           next: (res => {
-            alert(res + "next");
             this.signUpForm.reset();
             this.router.navigate(['login']);
-          }),
-          error: (err => {
+          }
+          ),
+          error: (err) => {
             alert(err?.error + "error");
-          })
+          }
         })
     }
-    // else{
-    //   ValideForm.validateAllFormFiles(this.signUpForm);
-    // }
   }
-
 }
