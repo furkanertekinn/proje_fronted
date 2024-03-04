@@ -11,6 +11,7 @@
                     <div class="panel-body p-3">
 
                         <form class="" [formGroup]="userForm" (ngSubmit)="onLogin()">
+
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="fa fa-envelope p-2"></span>
@@ -22,7 +23,6 @@
                                 <div class="form-group input-field">
                                     <span class="fa fa-lock p-2"></span>
                                     <input [type]="type" placeholder="Password" formControlName="password">
-                                    <span (click)="hideShowPass" class="fa {{eyeIcon}}"></span>
                                 </div>
                             </div>
 
@@ -31,22 +31,10 @@
                             </div>
 
                             <button class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have account? <a id="forget"
-                                    routerLink="/signup"> Sign Up</a>
+                            <div class="text-center pt-4 text-muted">Don't have account?
+                                <a id="forget" routerLink="/signup"> Sign Up</a>
                             </div>
-
                         </form>
-
-                    </div>
-                    <div class="mx-3 my-2 py-2 bordert">
-                        <div class="text-center py-3">
-                            <a href="https://www.facebook.com" target="_blank" class="px-2"><span
-                                    class="fa fa-facebook"></span></a>
-                            <a href="https://www.hotmail.com" target="_blank" class="px-2"><span
-                                    class="fa fa-envelope"></span></a>
-                            <a href="https://www.google.com" target="_blank" class="px-2"><span
-                                    class="fa fa-google"></span></a>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ export class SignupComponent {
   formBuilder = inject(FormBuilder);
   httpService = inject(HttpService);
   router = inject(Router);
-  eyeIcon: string = "fa-eye-slash";
   signUpForm!: FormGroup;
 
   ngOnInit(): void {
@@ -30,7 +29,6 @@ export class SignupComponent {
 
   hideShowPass() {
     this.isText = !this.isText;
-    this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
   }
 

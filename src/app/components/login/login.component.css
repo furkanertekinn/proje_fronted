@@ -87,3 +87,7 @@ img {
     background-color: #fff;
     padding: 0 8px;
 }
+
+.form-group {
+    margin-top: 15px;
+}

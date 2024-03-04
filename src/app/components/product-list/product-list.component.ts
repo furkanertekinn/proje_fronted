@@ -1,17 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { IProduct } from '../../interfaces/product';
 import { HttpService } from '../../http.service';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, RouterLink, MatToolbarModule, MatIconModule, RouterLink],
+  imports: [RouterLink, RouterLink, TableModule, ButtonModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -56,9 +54,15 @@ export class ProductListComponent {
       });
   }
 
-  checkIsAuthenticated(){
-    if(localStorage.getItem("token") != null)
+  checkIsAuthenticated() {
+    if (localStorage.getItem("token") != null)
       return true;
     return false;
+  }
+
+  exit() {
+    localStorage.removeItem("token");
+    // localStorage.clear();
+    this.router.navigateByUrl("/login");
   }
 }
