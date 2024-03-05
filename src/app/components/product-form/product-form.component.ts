@@ -25,7 +25,7 @@ export class ProductFormComponent {
   })
   productId!: number;
   isEdit = false;
-  
+
   ngOnInit() {
     this.productId = this.route.snapshot.params['id'];
     if (this.productId) {

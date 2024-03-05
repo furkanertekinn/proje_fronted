@@ -10,7 +10,7 @@ import { ExitComponent } from '../exit/exit.component';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink, RouterLink, TableModule, ButtonModule, ExitComponent],
+  imports: [RouterLink, TableModule, ButtonModule, ExitComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -19,16 +19,9 @@ export class ProductListComponent {
   productList: IProduct[] = [];
   httpService = inject(HttpService)
   toaster = inject(ToastrService)
-  displayedColumns: string[] = [
-    'id',
-    'productName',
-    'productUnitPrice',
-    'productUnitInStock',
-    'total',
-    'action'
-  ];
 
   isAuthenticated: boolean = false;
+
   ngOnInit() {
     this.getProductFromServer();
     this.isAuthenticated = this.checkIsAuthenticated();
@@ -37,7 +30,6 @@ export class ProductListComponent {
   getProductFromServer() {
     this.httpService.getAllProduct().subscribe(result => {
       this.productList = result;
-      console.log(this.productList);
     })
   }
 

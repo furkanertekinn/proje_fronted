@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { IProduct } from './interfaces/product';
-import { IUser } from './interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +32,10 @@ export class HttpService {
   }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}/register`, userObj);
+    return this.http.post<any>(this.baseUrl + "/register", userObj);
   }
 
   login(loginObj: any) {
-    return this.http.post<any>(`${this.baseUrl}/authenticate`, loginObj);
+    return this.http.post<any>(this.baseUrl + "/authenticate", loginObj);
   }
-
 }
