@@ -3,8 +3,7 @@
     <header class="header bg-info p-4">
         <div class="fw-bold fs-4 text-start">
             Products
-            <button class="add-button btn btn-danger fw-medium pull-right" type="submit" (click)="exit()">
-                Exit </button>
+            <app-exit></app-exit>
             <button class="add-button btn btn-success fw-medium pull-right" type="submit" routerLink="/create-product">
                 Add Product</button>
         </div>
@@ -32,19 +31,21 @@
                 <td>{{ product.productUnitInStock }}</td>
                 <td>{{ product.total }} ₺</td>
                 <td>
-                    <button type="button" class="btn btn-warning" (click)="edit(product.id)">Edit</button>
-                    <button type="button" class="btn btn-danger" (click)="delete(product.id)">Delete</button>
+                    <button type="button" class="btn-ed btn btn-warning" (click)="edit(product.id)">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn-ed btn btn-danger" (click)="delete(product.id)">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </td>
             </tr>
         </ng-template>
-
         <ng-template pTemplate="paginatorleft">
             <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
         </ng-template>
         <ng-template pTemplate="paginatorright">
             <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
         </ng-template>
-
     </p-table>
 
 </div>

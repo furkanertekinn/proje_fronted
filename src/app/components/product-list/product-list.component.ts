@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { ExitComponent } from '../exit/exit.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink, RouterLink, TableModule, ButtonModule],
+  imports: [RouterLink, RouterLink, TableModule, ButtonModule, ExitComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -58,11 +59,5 @@ export class ProductListComponent {
     if (localStorage.getItem("token") != null)
       return true;
     return false;
-  }
-
-  exit() {
-    localStorage.removeItem("token");
-    // localStorage.clear();
-    this.router.navigateByUrl("/login");
   }
 }
