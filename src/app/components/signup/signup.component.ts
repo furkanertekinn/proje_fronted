@@ -12,7 +12,6 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class SignupComponent {
   type: string = 'password';
-  isText: boolean = false;
   formBuilder = inject(FormBuilder);
   httpService = inject(HttpService);
   router = inject(Router);
@@ -25,11 +24,6 @@ export class SignupComponent {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-  }
-
-  hideShowPass() {
-    this.isText = !this.isText;
-    this.isText ? this.type = "text" : this.type = "password";
   }
 
   onSignup() {

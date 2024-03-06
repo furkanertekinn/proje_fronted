@@ -31,7 +31,6 @@ export class ProductFormComponent {
     if (this.productId) {
       this.isEdit = true;
       this.httpService.getProduct(this.productId).subscribe(productRes => {
-        console.log(productRes);
         this.productForm.patchValue({
           name: productRes.productName,
           price: productRes.productUnitPrice,
@@ -40,6 +39,7 @@ export class ProductFormComponent {
       });
     }
   }
+
   save() {
     const product: IProduct = {
       productName: this.productForm.value.name!,
@@ -50,14 +50,12 @@ export class ProductFormComponent {
       if (confirm('Are you sure to update record?'))
         this.httpService.updateProduct(this.productId, product)
           .subscribe(() => {
-            console.log("success");
             this.toaster.success("Updated successfully.");
             this.router.navigateByUrl("/product-list");
           });
     } else {
       if (confirm('Are you sure to update record?'))
         this.httpService.createProduct(product).subscribe(() => {
-          console.log("success");
           this.toaster.success("Added successfully.");
           this.router.navigateByUrl("/product-list");
         });

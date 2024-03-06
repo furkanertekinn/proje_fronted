@@ -14,15 +14,14 @@ export class ExitComponent {
   exit() {
     if (confirm('Are you sure to exit record?')) {
 
-      var token = 'abc';
+      var token = 'token';
 
       if (token == 'token') {
-        localStorage.removeItem("token");
-        // localStorage.clear();
+        localStorage.clear();
         this.router.navigateByUrl("/login");
       }
       else {
-        console.log("token can't remove")
+        alert("Token can't remove");
       }
     }
   }

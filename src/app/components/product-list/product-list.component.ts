@@ -34,14 +34,12 @@ export class ProductListComponent {
   }
 
   edit(id: number) {
-    console.log(id);
     this.router.navigateByUrl("/product/" + id);
   }
 
   delete(id: number) {
     if (confirm('Are you sure to delete record?'))
       this.httpService.deleteProduct(id).subscribe(() => {
-        console.log("deleted");
         this.getProductFromServer();
         this.toaster.success("Deleted successfully.");
       });

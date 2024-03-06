@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { HttpService } from '../../http.service';
 import { Router, RouterLink } from '@angular/router';
 
@@ -21,11 +21,6 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   })
 
-  hideShowPass() {
-    this.isText = !this.isText;
-    this.isText ? this.type = "text" : this.type = "password";
-  }
-
   onLogin() {
     if (this.userForm.valid) {
       this.httpService.login(this.userForm.value)
@@ -34,11 +29,11 @@ export class LoginComponent {
             this.userForm.reset();
             this.router.navigate(['product-list']);
             if (res == true) {
-              localStorage.setItem('token', res)
+              localStorage.setItem('token', res);
             }
           },
           error: (err) => {
-            alert(err?.error + " error");
+            alert(err?.error + 'error');
           }
         })
     }
