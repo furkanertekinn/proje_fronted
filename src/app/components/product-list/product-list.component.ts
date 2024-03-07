@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { IProduct } from '../../interfaces/product';
 import { HttpService } from '../../http.service';
 import { Router, RouterLink } from '@angular/router';
@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ExitComponent } from '../exit/exit.component';
+import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-product-list',
@@ -17,14 +19,19 @@ import { ExitComponent } from '../exit/exit.component';
 export class ProductListComponent {
   router = inject(Router);
   productList: IProduct[] = [];
-  httpService = inject(HttpService)
-  toaster = inject(ToastrService)
-
+  httpService = inject(HttpService);
+  toaster = inject(ToastrService);
   isAuthenticated: boolean = false;
+
+  title = 'Convert_To_PDF';
+  @ViewChild('content') content!: ElementRef;
+  data: any;
+  product: any;
 
   ngOnInit() {
     this.getProductFromServer();
     this.isAuthenticated = this.checkIsAuthenticated();
+    this.downloadPDFAPI();
   }
 
   getProductFromServer() {
@@ -49,5 +56,19 @@ export class ProductListComponent {
     if (localStorage.getItem("token") != null)
       return true;
     return false;
+  }
+
+  downloadPDFAPI() {
+    let formData = new FormData();
+    formData.append('vendor_id', "8");
+    formData.append('language', "en");
+    this.httpService.getDataFromApi(formData).subscribe((res: any) => {
+      this.data = res.questionnaires_list;
+    });
+  }
+
+  downloadPDF() {
+    const contentElement = this.content.nativeElement;
+    this.httpService.generatePDF(contentElement, 'products-pdf');
   }
 }

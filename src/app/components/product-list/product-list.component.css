@@ -3,3 +3,9 @@
     margin-left: 0;
 }
 
+.btn-download{
+    font-size:small;
+    font-style: italic;
+    margin: 10px;
+}
+

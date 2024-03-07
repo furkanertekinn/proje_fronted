@@ -8,47 +8,50 @@
                 Add Product</button>
         </div>
     </header>
-    
 
-    <p-table [value]="productList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[5, 10, 20]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.productName }}</td>
-                <td>{{ product.productUnitPrice }} ₺</td>
-                <td>{{ product.productUnitInStock }}</td>
-                <td>{{ product.total }} ₺</td>
-                <td>
-                    <button type="button" class="btn-ed btn btn-warning" (click)="edit(product.id)">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button type="button" class="btn-ed btn btn-danger" (click)="delete(product.id)">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft">
-            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-        </ng-template>
-    </p-table>
 
+
+    <div #content>
+        <p-table [value]="productList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 20]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.productName }}</td>
+                    <td>{{ product.productUnitPrice }} ₺</td>
+                    <td>{{ product.productUnitInStock }}</td>
+                    <td>{{ product.total }} ₺</td>
+                    <td>
+                        <button type="button" class="btn-ed btn btn-warning" (click)="edit(product.id)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn-ed btn btn-danger" (click)="delete(product.id)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+        <button type="button" class="btn-download btn btn-secondary pull-right" (click)="downloadPDF()">Download List PDF</button>
+    </div>
 </div>
 }
 
