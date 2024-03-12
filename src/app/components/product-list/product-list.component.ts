@@ -6,32 +6,33 @@ import { ToastrService } from 'ngx-toastr';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ExitComponent } from '../exit/exit.component';
-import jsPDF from 'jspdf';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink, TableModule, ButtonModule, ExitComponent],
+  imports: [RouterLink, TableModule, ButtonModule, ExitComponent, FormsModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
+  constructor(private httpService:HttpService){
+1
+  }
   router = inject(Router);
   productList: IProduct[] = [];
-  httpService = inject(HttpService);
   toaster = inject(ToastrService);
   isAuthenticated: boolean = false;
 
-  title = 'Convert_To_PDF';
-  @ViewChild('content') content!: ElementRef;
-  data: any;
+  // title = 'Convert_To_PDF';
+  // @ViewChild('content') content!: ElementRef;
+  // data: any;
   product: any;
 
   ngOnInit() {
     this.getProductFromServer();
     this.isAuthenticated = this.checkIsAuthenticated();
-    this.downloadPDFAPI();
+    // this.downloadPDFAPI();
   }
 
   getProductFromServer() {
@@ -42,6 +43,10 @@ export class ProductListComponent {
 
   edit(id: number) {
     this.router.navigateByUrl("/product/" + id);
+  }
+
+  updatePrice(id:number){
+    this.router.navigateByUrl('/update-price/'+id)
   }
 
   delete(id: number) {
@@ -58,17 +63,17 @@ export class ProductListComponent {
     return false;
   }
 
-  downloadPDFAPI() {
-    let formData = new FormData();
-    formData.append('vendor_id', "8");
-    formData.append('language', "en");
-    this.httpService.getDataFromApi(formData).subscribe((res: any) => {
-      this.data = res.questionnaires_list;
-    });
-  }
+  // downloadPDFAPI() {
+  //   let formData = new FormData();
+  //   formData.append('vendor_id', "8");
+  //   formData.append('language', "en");
+  //   this.httpService.getDataFromApi(formData).subscribe((res: any) => {
+  //     this.data = res.questionnaires_list;
+  //   });
+  // }
 
-  downloadPDF() {
-    const contentElement = this.content.nativeElement;
-    this.httpService.generatePDF(contentElement, 'products-pdf');
-  }
+  // downloadPDF() {
+  //   const contentElement = this.content.nativeElement;
+  //   this.httpService.generatePDF(contentElement, 'products-pdf');
+  // }
 }

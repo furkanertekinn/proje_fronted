@@ -61,4 +61,22 @@ export class ProductFormComponent {
         });
     }
   }
+
+  // abc() {
+  //   const getir: IProduct = {
+  //     productName: this.productForm.value.name!,
+  //     productUnitPrice: this.productForm.value.price!,
+  //     productUnitInStock: this.productForm.value.stock!
+  //   }
+  //   if (this.isEdit == false)
+  //     this.httpService.createProduct(getir).subscribe(() => {
+  //       this.router.navigateByUrl('product-list');
+  //     })
+  //   else {
+  //     this.httpService.updateProduct(this.productId, getir).subscribe(() => {
+  //       this.router.navigateByUrl('product-list');
+  //     })
+  //   }
+  // }
+
 }

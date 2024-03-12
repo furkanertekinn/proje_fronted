@@ -9,13 +9,11 @@
         </div>
     </header>
 
-
-
     <div #content>
         <p-table [value]="productList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
             [tableStyle]="{ 'min-width': '50rem' }"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[5, 10, 20]">
+            [rowsPerPageOptions]="[5, 10, 20, 50, 100]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Id</th>
@@ -40,6 +38,9 @@
                         <button type="button" class="btn-ed btn btn-danger" (click)="delete(product.id)">
                             <i class="fa fa-trash"></i>
                         </button>
+                        <button type="button" class="btn-ed btn btn-primary" (click)="updatePrice(product.id)">
+                            <i class="fa fa-money"></i>
+                        </button>
                     </td>
                 </tr>
             </ng-template>
@@ -50,7 +51,8 @@
                 <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
             </ng-template>
         </p-table>
-        <button type="button" class="btn-download btn btn-secondary pull-right" (click)="downloadPDF()">Download List PDF</button>
+        <!-- <button type="button" class="btn-download btn btn-secondary pull-right" (click)="downloadPDF()">Download List
+            PDF</button> -->
     </div>
 </div>
 }

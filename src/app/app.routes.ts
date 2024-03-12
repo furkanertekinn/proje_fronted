@@ -3,6 +3,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { UpdatePriceComponent } from './components/update-price/update-price.component';
 
 export const routes: Routes = [
     {
@@ -28,5 +29,9 @@ export const routes: Routes = [
     {
         path: 'product/:id',
         component: ProductFormComponent
+    },
+    {
+        path: 'update-price/:id',
+        component:UpdatePriceComponent
     }
 ];

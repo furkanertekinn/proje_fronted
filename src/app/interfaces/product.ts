@@ -4,3 +4,8 @@ export interface IProduct {
     productUnitPrice: number,
     productUnitInStock: number
 }
+
+export interface IUpdatePrice{
+    id: number,
+    productUnitPrice: number,
+}
