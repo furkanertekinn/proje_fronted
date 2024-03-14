@@ -3,6 +3,8 @@
     <header class="header bg-info p-4">
         <div class="fw-bold fs-4 text-start">
             Products
+            <button class="add-button btn btn-success fw-medium pull-right" type="submit" routerLink="/add-custom">
+                Ekle</button>
             <app-exit></app-exit>
             <button class="add-button btn btn-success fw-medium pull-right" type="submit" routerLink="/create-product">
                 Add Product</button>
@@ -41,6 +43,12 @@
                         <button type="button" class="btn-ed btn btn-primary" (click)="updatePrice(product.id)">
                             <i class="fa fa-money"></i>
                         </button>
+                        <button type="button" class="btn-ed btn btn-secondary" (click)="updateStock(product.id)">
+                            <i class="fa fa-car"></i>
+                        </button>
+                        <button type="button" class="btn-ed btn btn-success" (click)="updateName(product.id)">
+                            <i class="fa fa-plus"></i>
+                        </button>
                     </td>
                 </tr>
             </ng-template>
@@ -52,7 +60,7 @@
             </ng-template>
         </p-table>
         <!-- <button type="button" class="btn-download btn btn-secondary pull-right" (click)="downloadPDF()">Download List
-            PDF</button> -->
+                    PDF</button> -->
     </div>
 </div>
 }

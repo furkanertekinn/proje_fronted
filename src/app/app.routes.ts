@@ -4,6 +4,9 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UpdatePriceComponent } from './components/update-price/update-price.component';
+import { UpdateStockComponent } from './components/update-stock/update-stock.component';
+import { UpdateNameComponent } from './components/update-name/update-name.component';
+import { AddCustomComponent } from './components/add-custom/add-custom.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +35,18 @@ export const routes: Routes = [
     },
     {
         path: 'update-price/:id',
-        component:UpdatePriceComponent
+        component: UpdatePriceComponent
+    },
+    {
+        path: 'update-stock/:id',
+        component: UpdateStockComponent
+    },
+    {
+        path: 'update-name/:id',
+        component: UpdateNameComponent
+    },
+    {
+        path : 'add-custom',
+        component:AddCustomComponent
     }
 ];

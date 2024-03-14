@@ -5,7 +5,21 @@ export interface IProduct {
     productUnitInStock: number
 }
 
-export interface IUpdatePrice{
+export interface IUpdatePrice {
     id: number,
-    productUnitPrice: number,
+    productUnitPrice: number
+}
+
+export interface IUpdateStock {
+    id: number,
+    productUnitInStock: number
+}
+
+export interface IUpdateName {
+    id: number,
+    productName: string
+}
+
+export interface IAddCustom {
+    productName: string
 }

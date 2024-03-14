@@ -16,8 +16,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
-  constructor(private httpService:HttpService){
-1
+  constructor(private httpService: HttpService) {
+    1
   }
   router = inject(Router);
   productList: IProduct[] = [];
@@ -45,8 +45,16 @@ export class ProductListComponent {
     this.router.navigateByUrl("/product/" + id);
   }
 
-  updatePrice(id:number){
-    this.router.navigateByUrl('/update-price/'+id)
+  updatePrice(id: number) {
+    this.router.navigateByUrl('/update-price/' + id)
+  }
+
+  updateStock(id: number) {
+    this.router.navigateByUrl('/update-stock/' + id);
+  }
+
+  updateName(id: number) {
+    this.router.navigateByUrl('/update-name/' + id);
   }
 
   delete(id: number) {

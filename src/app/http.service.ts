@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { IProduct, IUpdatePrice } from './interfaces/product';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import { Observable } from 'rxjs';
+import { IAddCustom, IProduct, IUpdateName, IUpdatePrice, IUpdateStock } from './interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +9,7 @@ export class HttpService {
   private apiUrl: string = "https://localhost:7289";
   private baseUrl: string = "https://localhost:7289/api/User";
   http = inject(HttpClient);
-  constructor() { }
+  // constructor() { }
 
   getAllProduct() {
     return this.http.get<IProduct[]>(this.apiUrl + "/api/Product");
@@ -20,6 +17,10 @@ export class HttpService {
 
   createProduct(product: IProduct) {
     return this.http.post(this.apiUrl + "/api/Product", product);
+  }
+
+  addCustom(product:IAddCustom){
+    return this.http.post(this.apiUrl+"/api/AddCustom/addCustom", product)
   }
 
   getProduct(productId: number) {
@@ -30,8 +31,16 @@ export class HttpService {
     return this.http.put<IProduct>(this.apiUrl + "/api/Product/" + productId, product);
   }
 
-  updatePrice( updatePrice: IUpdatePrice) {
+  updatePrice(updatePrice: IUpdatePrice) {
     return this.http.put<IUpdatePrice>(this.apiUrl + "/api/Product/", updatePrice);
+  }
+
+  updateStock(updateStock: IUpdateStock) {
+    return this.http.put<IUpdateStock>(this.apiUrl + "/api/Product/", updateStock);
+  }
+
+  updateName(updateName: IUpdateName) {
+    return this.http.put<IUpdateName>(this.apiUrl + "/api/Product/", updateName);
   }
 
   deleteProduct(productId: number) {
@@ -49,7 +58,7 @@ export class HttpService {
   getDataFromApi(data: any) {
     return this.http.post(this.apiUrl + "/api/Product", data);
   }
-  
+
   // getSearch(search: string): Observable<IProduct[]> {
   //   return this.http.get<IProduct[]>(this.apiUrl + `/api/Product?q=${search}`);
   // }

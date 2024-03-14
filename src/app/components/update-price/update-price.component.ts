@@ -12,7 +12,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './update-price.component.css'
 })
 export class UpdatePriceComponent {
-
   httpService = inject(HttpService);
   router = inject(Router);
   formBuilder = inject(FormBuilder);
@@ -26,6 +25,7 @@ export class UpdatePriceComponent {
   updateId = this.route.snapshot.params['id']
 
   ngOnInit() {
+
     this.httpService.getProduct(this.updateId).subscribe(productRes => {
       this.updateForm.patchValue({
         price: productRes.productUnitPrice

@@ -1,0 +1,22 @@
+<div>
+    <header class="header bg-info p-4">
+        <div class="fw-bold fs-4 text-start" routerLink="/product-list">
+            Products
+            <i class="fa fa-solid fa-home pull-right mx-4"></i>
+        </div>
+    </header>
+
+    <form class="form text-center shadow p-5" [formGroup]="updateStockForm">
+
+        <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Stock</span>
+            <input type="text" class="form-control" placeholder="Name" aria-label="stock"
+                aria-describedby="addon-wrapping" formControlName="stock">
+        </div>
+
+        <button type="button" class="btn-ed btn btn-success my-4" (click)="updateStock()">
+            Update
+        </button>
+
+    </form>
+</div>
